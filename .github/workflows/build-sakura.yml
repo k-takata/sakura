@@ -58,12 +58,21 @@ jobs:
     - name: Add msbuild to PATH
       uses: microsoft/setup-msbuild@v1.0.0
 
-    - name: MSBuild
-      run: build-sln.bat ${{ matrix.platform }} ${{ matrix.config }}
-      shell: cmd
-
     - name: Install Locale Emulator
       run: choco install locale-emulator -y
+      shell: cmd
+
+    - name: Check Locale Emulator
+      run: |
+        tools\checkcp
+        where leproc
+        start /wait leproc %COMSPEC% /c "d:\a\sakura\sakura\tools\checkcp.exe > d:\a\sakura\sakura\tools\cp.log"
+        dir tools
+        type tools\cp.log
+      shell: cmd
+
+    - name: MSBuild
+      run: build-sln.bat ${{ matrix.platform }} ${{ matrix.config }}
       shell: cmd
 
     - name: Build HTML Help
