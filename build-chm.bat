@@ -64,20 +64,12 @@ set PROJECT_CHM=%2
 if exist "%PROJECT_CHM%" del /F "%PROJECT_CHM%"
 
 @rem hhc.exe returns 1 on success, and returns 0 on failure
-if defined CMD_LEPROC (
-	start /wait "%CMD_LEPROC%" "%CMD_HHC%" %PROJECT_HHP%
-) else (
-	"%CMD_HHC%" %PROJECT_HHP%
-)
+"%CMD_HHC%" %PROJECT_HHP%
 if not errorlevel 1 (
 	echo error %PROJECT_HHP% errorlevel %errorlevel%
 
 	del /F "%PROJECT_CHM%"
-	if defined CMD_LEPROC (
-		start /wait "%CMD_LEPROC%" "%CMD_HHC%" %PROJECT_HHP%
-	) else (
-		"%CMD_HHC%" %PROJECT_HHP%
-	)
+	"%CMD_HHC%" %PROJECT_HHP%
 )
 if not errorlevel 1 (
 	echo retry error %PROJECT_HHP% errorlevel %errorlevel%
