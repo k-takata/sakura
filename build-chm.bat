@@ -69,10 +69,11 @@ if defined CMD_LEPROC (
 		echo fail to execute LEProc
 		exit /b 1
 	)
-	@rem wait about 45 sec.
-	for /L %%i in (1,1,45) do (
+	@rem wait to create chm
+	for /L %%i in (1,1,30) do (
 		ping -n 2 localhost > NUL
-		if exist "%PROJECT_CHM%" exit /b 0
+		copy "%PROJECT_CHM%" nul > NUL 2>&1
+		if not errorlevel 1 exit /b 0
 	)
 	echo fail to create %PROJECT_CHM%
 	exit /b 1
@@ -89,8 +90,8 @@ if defined CMD_LEPROC (
 		echo retry error %PROJECT_HHP% errorlevel %errorlevel%
 		exit /b 1
 	)
+	exit /b 0
 )
-exit /b 0
 
 :download_archive
 pwsh.exe -ExecutionPolicy RemoteSigned -File %SRC_HELP%\extract-chm-from-artifact.ps1
