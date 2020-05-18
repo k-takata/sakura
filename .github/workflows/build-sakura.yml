@@ -96,8 +96,7 @@ jobs:
       shell: cmd
 
     - name: Build HTML Help
-      #run: build-chm.bat
-      run: start /wait leproc %COMSPEC% /c %GITHUB_WORKSPACE%\build-chm.bat
+      run: build-chm.bat
       shell: cmd
 
     - name: Build installer with Inno Setup
