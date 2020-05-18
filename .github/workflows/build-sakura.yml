@@ -59,9 +59,7 @@ jobs:
       uses: microsoft/setup-msbuild@v1.0.0
 
     - name: Install Locale Emulator
-      run: |
-        choco install locale-emulator -y
-        leproc %COMSPEC%
+      run: choco install locale-emulator -y
       shell: cmd
 
       #    - name: Check Locale Emulator
