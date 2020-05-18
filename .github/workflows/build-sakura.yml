@@ -43,10 +43,10 @@ jobs:
     strategy:
       matrix:
         config:
-          - Debug
+          #- Debug
           - Release
         platform:
-          - Win32
+          #- Win32
           - x64
 
     # Steps represent a sequence of tasks that will be executed as part of the job
@@ -68,7 +68,7 @@ jobs:
         where leproc
         start /wait leproc %COMSPEC% /c "d:\a\sakura\sakura\tools\checkcp.exe > d:\a\sakura\sakura\tools\cp.log"
         dir tools
-        type tools\cp.log
+        rem type tools\cp.log
       shell: cmd
 
     # See: https://github.com/nelsonjchen/reverse-rdp-windows-github-actions
