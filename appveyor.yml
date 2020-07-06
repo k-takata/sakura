@@ -25,6 +25,8 @@ skip_commits:
 
 install:
 - cmd: |
+    where py
+    where pip
     pip install openpyxl --user
 
 # to run our custom scripts instead of automatic MSBuild
